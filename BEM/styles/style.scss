@@ -1,0 +1,946 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto+Slab&display=swap');
+
+@mixin text($size, $color, $weight, $lheight) {
+    font-size: $size;
+    color: $color;
+    font-weight: $weight;
+    line-height: $lheight;
+}
+
+@mixin flex($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+%line {
+    @include size(50px, 2px);
+    background-color: #555555;
+    margin-top: 19px;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    @media screen and (max-width: 415px) {
+        max-width: 415px;
+    }
+}
+
+.home {
+    height: 100vh;
+    width: 100%;
+    background-image: url(../img/welcome/welcome-background.png);
+    text-align: center;
+
+    .nav {
+        &__container {
+            @include flex(row, space-around, none);
+            padding-top: 40px;
+
+            .logo {
+                @include text(24px, white, 700, 36px);
+                @media screen and (max-width: 900px) {
+                    font-size: 18px;
+                    margin-left: 10px;
+                }
+                @media screen and (max-width: 600px) {
+                    margin-left: -15px;
+                }
+            }
+            .nav__links {
+                display: flex;
+                @media screen and (max-width: 900px) {
+                    margin-right: 15px;
+                }
+                .nav__link {
+                    @include text(14px, white, 400, 36px);
+                    letter-spacing: 0.025em;
+                    padding: 0 15px;
+                    &:last-child {
+                        margin-right: 5px;
+                    }
+                    a {
+                        text-decoration: none;
+                        color: white;
+                    }
+                    @media screen and (max-width: 900px) {
+                        font-size: 10px;
+                    }
+                    @media screen and (max-width: 600px) {
+                        display: none;
+                    }
+                }
+            }
+
+            .nav__icon_xs {
+                display: none;
+                position: absolute;
+                right:70px;
+                top: 45px;
+                z-index: 3;
+                transform: none;
+                transition: all 0.3s ease-in;
+                @media screen and (max-width: 600px) {
+                    display: block;
+                }
+            }
+
+            .nav__menu_xs {
+                @include size(100vw, 100vh);
+                display: none;
+                position: absolute;
+                top: 0;
+                text-align: center;
+                background-image: url(../img/welcome/welcome-background.png);
+                z-index: 2;
+                .nav__link {
+                    display: block;
+                    @include text(24px, white, 600, 50px);
+                    text-transform: uppercase;
+                    a {
+                        color: white;
+                        text-decoration: none;
+                    }
+                    &:first-child {
+                        margin-top: 30vh;
+                    }
+                }
+            }
+        }
+    }
+
+    .welcome {
+        @include flex(column, center, center);
+        margin-top: 30vh;
+        
+        &__title {
+            @include text(48px, white, 600, 24px);
+            padding-bottom: 20px;
+            @media screen and (max-width: 900px) {
+                font-size: 40px;
+            }
+            @media screen and (max-width: 500px) {
+                font-size: 24px;
+            }
+        }
+        &__subtitle {
+            @include text(20px, white, none, none);
+            font-family: 'Roboto Slab', serif;
+            padding-top: 15px;
+            padding-bottom: 20px;
+            @media screen and (max-width: 900px) {
+                font-size: 15px;
+            }
+        }
+        &__btn {
+            @include size(180px, 50px);
+            border: 2px solid white;
+            border-radius: 2px;
+            background: transparent;
+            color: white;
+            margin-top: 50px;
+            @media screen and (max-width: 900px) {
+                @include size(140px, 40px);
+            }
+            &:hover {
+                box-shadow: 0px 3px 10px rgba(0, 0, 0, .9);
+                transition: 0.2s ease-out;
+            }
+        }
+    }
+}
+
+.services {
+    @include size(100%, 600px);
+    margin: auto;
+    @media screen and (max-width: 1450px) {
+        height: 100vh;
+    }
+
+    &__body {
+        width: 80%;
+        margin: auto;
+    }
+
+    &__header {
+        @include flex(column, center, center);
+
+        .services__title {
+            @include text(20px, #555555, 600, 24px);
+            margin-top: 99px;
+        }
+
+        hr {
+            @extend %line;
+        }
+
+        .services__subtitle {
+            @include text(16px, #555555, 400, 24px);
+            font-family: 'Roboto Slab', serif;
+            margin-top: 28px;
+            text-align: center;
+        }
+    }
+
+    &__row {
+        display: flex;
+
+        .services__column {
+            text-align: center;
+            display: flex;
+
+            .item-services {
+                width: 33.33%;
+                &__image {
+                    margin-top: 70px;
+                    img {
+                        @media screen and (max-width: 415px) {
+                            @include size(60px, 60px)
+                        }
+                    }
+                }
+
+                &__title {
+                    @include text(14px, #555555, 600, 24px);
+                    margin-top: 27px;
+                    text-transform: uppercase;
+                    text-align: center;
+                    @media screen and (max-width: 415px) {
+                        font-size: 11px;
+                    }
+                }
+
+                &__subtitle {
+                    max-width: 90%;
+                    max-height: 85px;
+                    margin: auto;
+                    margin-top: 27px;
+                    @media screen and (max-width: 715px) {
+                        font-size: 12px;
+                    }
+                    @media screen and (max-width: 415px) {
+                        font-size: 9px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.about {
+    @include size(100%, 100vh);
+    background-color: #f8f8f8;
+    margin: auto;
+    padding-bottom: 60px;
+    @media screen and (max-width: 1450px) {
+        height: auto;
+    }
+
+    &__body {
+        width: 80%;
+        margin: auto;
+    }
+
+    &__header {
+        @include flex(column, center, center);
+        .about__title {
+            @include text(20px, #555555, 600, 24px);
+            margin-top: 99px;
+        }
+        hr {
+            @extend %line;
+        }
+        .about__subtitle {
+            @include text(16px, #555555, 400, 24px);
+            font-family: 'Roboto Slab', serif;
+            margin-top: 28px;
+            text-align: center;
+        }
+    }
+
+    &__p {
+        display: flex;
+        max-width: 95%;
+        margin: auto;
+    }
+
+    &__text {
+        margin-top: 70px;
+        margin-right: 32px;
+        @media screen and (max-width: 900px) {
+            font-size: 14px;
+        }
+        @media screen and (max-width: 415px) {
+            font-size: 10px;
+        }
+    }
+
+    &__slider_wrapper {
+        white-space: nowrap;
+        width: 95%;
+        margin: 71px auto;
+        overflow: hidden;
+        position: relative;
+
+        .about__slider_container {
+
+            button {
+                @include size(35px, 38px);
+                @include text(none, #dddddd, none, 38px);
+                background-color: #c0301c;
+                border: none;
+                z-index: 1000;
+                text-align: center;
+                position: absolute;
+                bottom: 40%;
+                &:hover {
+                    background-color: #555555;
+                    transition: ease-in 0.2s;
+                }
+            }
+    
+            .next {
+                right: 0;
+            }
+
+            .about__slider {
+                @include flex(row, none, none);
+                position: relative;
+                right: 0;
+                transition: all 0.3s ease;
+
+                .item-slider {
+                    width: 263px;
+                    height: 250px;
+                    margin-right: 37px;
+
+                    &:hover .icon__wrapper .icon__container .icon {
+                        display: block;
+                    }
+
+                    .icon__wrapper {
+                        @include flex(row, none, center);
+                        margin-right: 200px;
+                        margin-left: 21.5%;
+                        padding-top: 75%;
+                        .icon__container {
+                            padding-left: 10px;
+                            padding-right: 10px;
+                            padding-top: 12px;
+                            padding-bottom: 10px;
+                            &:hover {
+                                transition: 0.2s ease-in;
+                                background-color: #c0301c;
+                            }
+                            .icon {
+                                @include size(16px, 16px);
+                                display: none;
+                            }
+                        }
+                    }
+                }
+
+                .slide_0 {
+                    background-image: url(../img/slider/slide-0.png);
+                    &:hover {
+                        background-image: url(../img/slider/slide-0-gray.png);
+                        transition: 0.2s ease-in;
+                    }
+                }
+                .slide_1 {
+                    background-image: url(../img/slider/slide-1.png);
+                    &:hover {
+                        background-image: url(../img/slider/slide-1-gray.png);
+                        transition: 0.2s ease-in;
+                    }
+                }
+                .slide_2 {
+                    background-image: url(../img/slider/slide-2.png);
+                    &:hover {
+                        background-image: url(../img/slider/slide-2-gray.png);
+                        transition: 0.2s ease-in;
+                    }
+                }
+                .slide_3 {
+                    background-image: url(../img/slider/slide-3.png);
+                    &:hover {
+                        background-image: url(../img/slider/slide-3-gray.png);
+                        transition: 0.2s ease-in;
+                    }        
+                }
+                .slide_4 {
+                    background-image: url(../img/slider/slide-4.png);
+                    &:hover {
+                        background-image: url(../img/slider/slide-4-gray.png);
+                        transition: 0.2s ease-in;
+                    }        
+                }
+                .slide_5 {
+                    background-image: url(../img/slider/slide-5.png);
+                    &:hover {
+                        background-image: url(../img/slider/slide-5-gray.png);
+                        transition: 0.2s ease-in;
+                    }        
+                }
+            }
+        }
+    }
+}
+
+.works {
+    &__header {
+        @include flex(column, center, center);
+
+        .works__title {
+            @include text(20px, #555555, 600, 24px);
+            margin-top: 99px;
+        }
+        hr {
+            @extend %line;
+        }
+        .works__links {
+            @include flex(row, center, center);
+            @include text(16px, #555555, 400, 24px);
+            font-family: 'Roboto Slab', serif;
+            margin-top: 28px;
+            @media screen and (max-width: 415px) {
+                font-size: 10px;
+            }
+
+            .works__link {
+                margin-right: 15px;
+                &:hover {
+                    color: #c0301c;
+                    cursor: pointer;
+                }
+            }
+
+            .active {
+                color: #c0301c;
+            }
+        }
+    }
+
+    &__cards_container {
+        margin: 70px 170px;
+        @media screen and (max-width: 850px) {
+            margin: 35px 60px;
+        }
+        @media screen and (max-width: 415px) {
+            margin: 15px 20px;
+        }
+        .works__cards_row {
+            margin-top: 30px;
+            .card {
+                background-position: center;
+                @include size(100%, 320px);
+                @media screen and (max-width: 992px) {
+                    @include size(100%, 150px)
+                }
+                @media screen and (max-width: 640px) {
+                    @include size(100%, 110px)
+                }
+                @media screen and (max-width: 415px) {
+                    @include size(100%, 70px)
+                }
+                &:hover .card__hover {
+                    display: block;
+                }
+
+                &__hover {
+                    text-align: center;
+                    display: none;
+                    .card__title {
+                        @include text(20px, white, 600, 24px);
+                        padding-top: 100px;
+                        @media screen and (max-width: 995px) {
+                            display: none;
+                        }
+                    }
+                    .card__subtitle {
+                        @include text(16px, white, 400, 24px);
+                        font-family: 'Roboto Slab', serif;
+                        margin-top: 16px;
+                        @media screen and (max-width: 995px) {
+                            display: none;
+                        }
+                    }
+                    .card__view {
+                        @include size(100px, 38px);
+                        @include text(14px, #c0301c, 500, none);
+                        border: none;
+                        background-color: white;
+                        margin-top: 25px;
+                        font-family: 'Roboto Slab';
+                        &:hover {
+                            cursor: pointer;
+                        }
+                        @media screen and (max-width: 995px) {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            .card-0 {
+                background-image: url(../img/works/image-0.png);
+                background-size: cover;
+                &:hover {
+                    background-image: url(../img/works/image-0-red.png);
+                    transition: 0.2s ease-in;
+                }
+            }
+
+            .card-1 {
+                background-image: url(../img/works/image-1.png);
+                background-size: cover;
+                &:hover {
+                    background-image: url(../img/works/image-1-red.png);
+                    transition: 0.2s ease-in;
+                }
+            }
+
+            .card-2 {
+                background-image: url(../img/works/image-2.png);
+                background-size: cover;
+                &:hover {
+                    background-image: url(../img/works/image-2-red.png);
+                    transition: 0.2s ease-in;
+                }
+            }
+
+            .card-3 {
+                background-image: url(../img/works/image-3.png);
+                background-size: cover;
+                &:hover {
+                    background-image: url(../img/works/image-3-red.png);
+                    transition: 0.2s ease-in;
+                }
+            }
+
+            .card-4 {
+                background-image: url(../img/works/image-4.png);
+                background-size: cover;
+                &:hover {
+                    background-image: url(../img/works/image-4-red.png);
+                    transition: 0.2s ease-in;
+                }
+            }
+
+            .card-5 {
+                background-image: url(../img/works/image-5.png);
+                background-size: cover;
+                &:hover {
+                    background-image: url(../img/works/image-5-red.png);
+                    transition: 0.2s ease-in;
+                }
+            }
+
+            .card-6 {
+                background-image: url(../img/works/image-6.png);
+                background-size: cover;
+                &:hover {
+                    background-image: url(../img/works/image-6-red.png);
+                    transition: 0.2s ease-in;
+                }
+            }
+
+            .card-7 {
+                background-image: url(../img/works/image-7.png);
+                background-size: cover;
+                &:hover {
+                    background-image: url(../img/works/image-7-red.png);
+                    transition: 0.2s ease-in;
+                }
+            }
+
+            .card-8 {
+                background-image: url(../img/works/image-8.png);
+                background-size: cover;
+                &:hover {
+                    background-image: url(../img/works/image-8-red.png);
+                    transition: 0.2s ease-in;
+                }
+            }
+        }
+    }
+}
+
+.hero {
+    @include size(100%, 369px);
+    background-image: url(../img/hero/background.png);
+    background-position: center;
+    text-align: center;
+
+    &__title {
+        @include text(30px, white, 400, 44px);
+        font-family: 'Roboto Slab';
+        padding-top: 99px;
+        @media screen and (max-width: 430px) {
+            font-size: 16px;
+        }
+    }
+
+    &__button {
+        @include text(18px, white, 400, 44px);
+        @include size(180px, 50px);
+        background: transparent;
+        border: 2px solid #ffffff;
+        border-radius: 2px;
+        margin-top: 53px;
+        &:hover {
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, .9);
+            transition: 0.2s ease-out;
+        }
+        @media screen and (max-width: 415px) {
+            @include size(120px, 40px);
+            @include text(14px, white, 400, 20px);
+        }
+    }
+}
+
+.blogs {
+    &__header {
+        @include flex(column, center, center);
+        .blogs__title {
+            @include text(20px, #555555, 600, 24px);
+            margin-top: 95px;
+        }
+        hr {
+            @extend %line;
+        }
+        .blogs__subtitle {
+            @include text(16px, #555555, 400, 24px);
+            font-family: 'Roboto Slab', serif;
+            margin-top: 28px;
+            @media screen and (max-width: 415px) {
+                text-align: center;
+            }
+        }
+    }
+
+    &__body {
+        max-width: 80%;
+        margin: 69px auto;
+        .blog {
+            height: 360px;
+            margin-top: 38px;
+            @media screen and (max-width: 700px) {
+                height: auto;
+            }
+            img {
+                max-width: 50%;
+                margin-right: 39px;
+                float: left;
+                min-height: 322px;
+                @media screen and (max-width: 700px) {
+                    @include size(100%, 100%);
+                    max-width: 100%;
+                    min-height: 0;
+                    float: none;
+                    margin-bottom: 15px;
+                }
+                @media screen and (max-width: 415px) {
+                    max-height: 60%;
+                    min-height: 0;
+                }
+            }
+            &__content {
+                padding-left: 50%;
+                @media screen and (max-width: 700px) {
+                    padding-left: 0;
+                }
+                .blog__header {
+                    @include flex(row, flex-start, center);
+                    .blog__date {
+                        @include flex(column, center, center);
+                        @include size(76px, 76px);
+                        text-align: center;
+                        border: 2px solid #555555;
+                        .blog__date_day {
+                            @include text(24px, #777777, 700, none);
+                        }
+                        .blog__date_month {
+                            @include text(14px, #777777, 700, none);
+                        }
+                        @media screen and (max-width: 700px) {
+                            @include size(50px, 50px);
+                        }
+                    }
+                    .blog__title_container {
+                        margin-left: 28px;
+                        .blog__title {
+                            @include text(16px, #c0301c, 600, 24px);
+                            text-transform: uppercase;
+                            @media screen and (max-width: 865px) {
+                                font-size: 13px;
+                            }
+                            @media screen and (max-width: 415px) {
+                                font-size: 11px;
+                            }
+                        }
+                        .blog__subtitle {
+                            @include text(13px, #777777, 600, 24px);
+                            font-style: italic;
+                            @media screen and (max-width: 865px) {
+                                font-size: 10px;
+                            }
+                            @media screen and (max-width: 415px) {
+                                font-size: 10px;
+                            }
+                        }
+                    }
+                }
+                .blog__text {
+                    @include text(14px, #555555, 500, none);
+                    font-family: 'Roboto Slab';
+                    max-height: 145px;
+                    margin-top: 39px;
+                    overflow: hidden;
+                    @media screen and (max-width: 415px) {
+                        font-size: 10px;
+                        max-height: none;
+                    }
+                }
+                .blog__link {
+                    @include text(13px, #c0301c, 700, none);
+                    margin-top: 34px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+        hr {
+            background-color: #dddddd;
+        }
+    }
+}
+
+.swiper {
+    height: 550px;
+    background-color: #f8f8f8;
+    @media screen and (max-width: 1450px) {
+        display: none;
+    }
+    .swiper__wrapper {
+        white-space: nowrap;
+        overflow: hidden;
+        .swiper__container {
+            .swiper__line {
+                @include flex(row, none, none);
+                transition: all 0.3s ease;
+                overflow-x: hidden;
+                .elem {
+                    font-family: 'Roboto Slab';
+                    text-align: center;
+                    margin: 105px 285px;
+                    &__images {
+                        img {
+                            margin-right: 60px;
+                        }
+                    }
+                    &__text {
+                        @include text(18px, #555555, 400, 30px);
+                        font-style: italic;
+                        margin-top: 70px;
+                    }
+                    .second {
+                        color: #c0301c;
+                    }
+                    .third {
+                        text-decoration: underline;
+                    }
+                    &__span {
+                        @include text(20px, #555555, 400, 30px);
+                        margin-top: 50px;
+                    }
+                }
+            }
+        }
+        .elem__points {
+            text-align: center;
+
+            &_1:hover {
+                cursor: pointer;
+            }
+            &_2:hover {
+                cursor: pointer;
+            }
+            &_3:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.get {
+    height: 100vh;
+    margin-bottom: 50px;
+    @media screen and (max-width: 1444px) {
+        height: auto;
+    }
+    &__header {
+        @include flex(column, center, center);
+        .get__title {
+            @include text(20px, #555555, 600, 24px);
+            margin-top: 99px;
+        }
+        hr {
+            @extend %line;
+        }
+        .get__subtitle {
+            @include text(16px, #555555, 400, 24px);
+            font-family: 'Roboto Slab', serif;
+            margin-top: 28px;
+            @media screen and (max-width: 415px) {
+                text-align: center;
+            }
+        }
+    }
+
+    &__body {
+        @include flex(row, center, none);
+        margin: auto;
+        margin-top: 42px;
+        width: 85%;
+        @media screen and (max-width: 1450px) {
+            margin: 0;
+            margin-top: 42px;
+            margin-left: auto;
+        }
+        @media screen and (max-width: 845px) {
+            @include flex(column, none, center);
+            margin: auto;
+            margin-top: 42px;
+            text-align: center;
+        }
+        .get__contacts {
+            margin-top: 43px;
+            margin-right: 100px;
+            margin-left: 80px;
+            @media screen and (max-width: 845px) {
+                margin-right: 0;
+                margin-left: 0;
+            }
+            .element {
+                margin-bottom: 37px;
+                img {
+                    float: left;
+                    margin-right: 10px;
+                    @media screen and (max-width: 845px) {
+                        float: none;
+                        margin-right: 0;
+                        margin-bottom: 5px;
+                    }
+                }
+                &__title {
+                    @include text(14px, #555555, 600, none);
+                    margin-bottom: 20px;
+                }
+                &__subtitle {
+                    @include text(14px, #555555, 400, 20px);
+                    font-family: 'Roboto Slab';
+                    margin-left: 30px;
+                    @media screen and (max-width: 845px) {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }
+
+        .get__inputs {
+            @include text(12px, #555555, 400, 20px);
+            font-family: 'Roboto Slab';
+            form {
+                .row {
+                    .col {
+                        input {
+                            @include size(350px, 44px);
+                            margin-top: 21px;
+                            margin-right: 30px;
+                            @media screen and (max-width: 1450px) {
+                                max-width: 350px;
+                            }
+                            @media screen and (max-width: 845px) {
+                                margin-left: 45px;
+                            }
+                            @media screen and (max-width: 415px) {
+                                @include size(230px, 30px);
+                                margin-right: 0;
+                                margin-left: 13px;
+                            }
+                        }
+
+                        input:focus {
+                            border: #c0301c;
+                        }
+
+                        input::placeholder {
+                            padding: 17px;
+                        }
+
+                        .input__message {
+                            @include size(730px, 104px);
+                            @media screen and (max-width: 1450px) {
+                                max-width: 350px;
+                            }
+                            @media screen and (max-width: 415px) {
+                                @include size(230px, 30px);
+                            }
+                        }
+
+                        button {
+                            @include size(170px, 44px);
+                            margin-top: 21px;
+                            background: transparent;
+                            border: 1px solid #555555;
+                            @media screen and (max-width: 845px) {
+                                @include size(200px, 44px);
+                                margin-left: auto;
+                            }
+                            @media screen and (max-width: 415px) {
+                                @include size(230px, 30px);
+                                margin-left: 10px;
+                            }
+
+                            &:hover {
+                                background-color: #c0301c;
+                                color: #ffffff;
+                                transition: 0.3s ease-in;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+footer {
+    height: 307px;
+    background-color: #c0301c;
+    @include flex(column, center, center);
+
+    .footer__title {
+        margin: 0 14px; 
+    }
+    hr {
+        @extend %line;
+        background-color: white;
+        margin-top: 29px;
+    }
+    .footer__subtitle {
+        @include text(12px, #ffffff, 100, 20px);
+        margin-top: 29px;
+        font-family: 'Roboto Slab';
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+}
